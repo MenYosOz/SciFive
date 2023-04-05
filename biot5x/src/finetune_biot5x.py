@@ -35,7 +35,8 @@ from clu import metric_writers
 import jax
 from jax import random
 from jax.experimental import multihost_utils
-from jax.experimental.global_device_array import GlobalDeviceArray
+# from jax.experimental.global_device_array import GlobalDeviceArray
+import jax
 import jax.numpy as jnp
 import numpy as np
 import seqio
@@ -51,6 +52,7 @@ from task import seqio, registerTask
 
 import nest_asyncio
 nest_asyncio.apply()
+jax.config.update('jax_array', True)
 
 # Automatically search for gin files relative to the T5X package.
 _DEFAULT_GIN_SEARCH_PATHS = [
@@ -717,7 +719,7 @@ if __name__ == '__main__':
 
   FLAGS = flags.FLAGS
   # OOM fix. Prevents TF from seeing GPUs to stop conflict with JAX.
-  tf.config.experimental.set_visible_devices([], 'GPU')
+  # tf.config.experimental.set_visible_devices([], 'GPU')
 
   jax.config.parse_flags_with_absl()
 
