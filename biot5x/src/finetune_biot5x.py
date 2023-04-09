@@ -719,7 +719,7 @@ if __name__ == '__main__':
 
   FLAGS = flags.FLAGS
   # OOM fix. Prevents TF from seeing GPUs to stop conflict with JAX.
-  # tf.config.experimental.set_visible_devices([], 'GPU')
+  tf.config.experimental.set_visible_devices([], 'GPU')
 
   jax.config.parse_flags_with_absl()
 
